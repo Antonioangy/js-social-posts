@@ -81,19 +81,23 @@ function stampaPosts() {
         </div>   
         `
     }
+
+    const buttons = document.querySelectorAll('.like-button');
+
+    for (let i = 0; i<buttons.length; i++){
+        buttons[i].addEventListener('click', function() {
+            const id = this.getAttribute('data-postid');
+            console.log(id);
+            var element = i+1;
+            posts[id].numeroLike = posts[id].numeroLike + 1;
+            document.getElementById("like-counter-"+element).innerHTML  = posts[id].numeroLike;
+            stampaPosts();
+        });
+    }
+
 }
 
 stampaPosts();
 
-const buttons = document.querySelectorAll('.like-button');
 
-for (let i = 0; i<buttons.length; i++){
-    buttons[i].addEventListener('click', function() {
-        const id = this.getAttribute('data-postid');
-        console.log(id);
-        posts[id].numeroLike = posts[id].numeroLike + 1;
 
-        
-        stampaPosts();
-    });
-}
